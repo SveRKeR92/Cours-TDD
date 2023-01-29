@@ -142,3 +142,25 @@ describe('Search', () => {
         expect(documentManager.search(' \t \n')).toBeNull();
     });
 });
+
+describe('Count', () => {
+    let documentManager = new DocumentManager();
+
+    beforeEach(() => {
+        documentManager = new DocumentManager();
+    });
+
+    it('should return 0 when no documents', () => {
+        expect(documentManager.count()).toBe(0);
+    });
+
+    it('should return 1 when 1 document added', () => {
+        documentManager.add(SAMPLES[0]);
+        expect(documentManager.count()).toBe(1);
+    });
+
+    it('should return the number of documents', () => {
+        documentManager.add(...SAMPLES);
+        expect(documentManager.count()).toBe(SAMPLES.length);
+    });
+});

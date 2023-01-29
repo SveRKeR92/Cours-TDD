@@ -61,4 +61,8 @@ export default class DocumentManager {
         if (term.trim().length == 0) return null;
         return null;
     }
+
+    public count(): number {
+        return this._documents.length;
+    }
 }
