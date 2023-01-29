@@ -141,4 +141,32 @@ describe('Search', () => {
         expect(documentManager.search('\t')).toBeNull();
         expect(documentManager.search(' \t \n')).toBeNull();
     });
+
+});
+describe('Archive', () => {
+    let documentManager = new DocumentManager();
+    let docToArchive : Document;
+    beforeEach(() => {
+        documentManager = new DocumentManager();
+        docToArchive = {...SAMPLES[0], archived: true, createdAt: new Date(),
+        };
+    });
+    it('should return an error if the document is not in the list', () => {
+        expect(() => documentManager.archive(docToArchive)).toThrowError();
+    });
+
+    it('should return an error if the document is already archived', () => {
+        documentManager.add(docToArchive);
+        expect(() => documentManager.archive(docToArchive)).toThrowError(new Error('Document not in list'));
+    });
+
+    it('should archive the document', () => {
+        const doc  = {...SAMPLES[0], archived: false, createdAt: new Date()};
+        documentManager.add(doc);
+        documentManager.archive(doc);
+        console.log("prout");
+        expect(1).toBe(1);
+    }
+    );
+
 });

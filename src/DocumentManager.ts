@@ -61,4 +61,21 @@ export default class DocumentManager {
         if (term.trim().length == 0) return null;
         return null;
     }
+
+    public archive(doc: Document): void {
+        const isInList = this._documents.some((d) => d === doc);
+
+        if (isInList && doc.archived) {
+           throw new Error('Document already archived');
+        }
+
+        if(!isInList) {
+            // document not in list
+            throw new Error('Document not in list');
+        } else {
+            // document is in list
+            doc.archived = true;
+        }
+           
+    }
 }
