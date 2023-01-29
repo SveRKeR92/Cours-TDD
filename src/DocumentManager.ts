@@ -62,6 +62,15 @@ export default class DocumentManager {
         return null;
     }
 
+
+    public count(): number {
+        return this._documents.length;
+    }
+
+    public duplicate(document: ImportDocument): Document[] {
+        this._documents.push(<Document>document);
+        return [...this._documents];
+    }
     public archive(doc: Document): void {
         const isInList = this._documents.some((d) => d === doc);
 
@@ -76,6 +85,5 @@ export default class DocumentManager {
             // document is in list
             doc.archived = true;
         }
-           
-    }
+    }  
 }
