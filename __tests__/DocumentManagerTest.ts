@@ -164,3 +164,16 @@ describe('Count', () => {
         expect(documentManager.count()).toBe(SAMPLES.length);
     });
 });
+
+describe('Duplicate',  () => {
+    let documentManager = new DocumentManager();
+
+    beforeEach(() => {
+        documentManager = new DocumentManager();
+    });
+
+    it('should duplicate a document', () => {
+        documentManager.add(...SAMPLES);
+        expect(documentManager.duplicate(SAMPLES[0])).toMatchObject([...SAMPLES, SAMPLES[0]]);
+    });
+});

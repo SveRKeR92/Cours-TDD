@@ -65,4 +65,9 @@ export default class DocumentManager {
     public count(): number {
         return this._documents.length;
     }
+
+    public duplicate(document: ImportDocument): Document[] {
+        this._documents.push(<Document>document);
+        return [...this._documents];
+    }
 }
